@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: api-gateway
+
+cloud:
+  gateway:
+    server:
+      webflux:
+        routes:
+          - id: user-service
+            uri: lb://USER-SERVICE
+            predicates:
+              - Path=/api/users/**
+          - id: zone-service
+            uri: lb://ZONE-SERVICE
+            predicates:
+              - Path=/api/zones/**
+
+jwt:
+  secret: mySecretKey1234567890
